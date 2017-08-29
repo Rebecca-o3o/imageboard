@@ -1,12 +1,17 @@
 const express = require('express');
 const app = express();
 
+const dbQuery = require('/database');
 
 app.use(express.static(__dirname + '/public'));
 
 
-app.get('/home', function(req, res){
-    res.send('router running');
+
+app.get('/', function(req, res){
+    dbQuery.displayImages().then((result)=>{
+        console.log(result.rows);
+        res.json(result);
+    });
 });
 
 
