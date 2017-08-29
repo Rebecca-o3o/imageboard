@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const dbQuery = require('/database');
+const dbQuery = require('./database');
 
 app.use(express.static(__dirname + '/public'));
 
