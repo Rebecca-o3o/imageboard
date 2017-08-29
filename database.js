@@ -9,8 +9,8 @@ const db = spicedPg(require('./secrets').db);
 // get images
 var displayImages = function(){
     const queryText = 'SELECT * FROM images';
-
-    db.query(queryText).then((result)=>{
+    // conssole.log(queryText);
+    return db.query(queryText).then((result)=>{
         console.log("Images:" + result.rows);
         return result.rows;
     }).catch((err)=>{
