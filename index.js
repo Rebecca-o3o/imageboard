@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const {s3Url} = require('./config.json');
 
 const dbQuery = require('./database');
 
@@ -13,8 +14,13 @@ app.use(express.static(__dirname + '/public'));
 app.get('/home', function(req, res){
 
     return dbQuery.displayImages().then((result)=>{
-        console.log("RESULT ROWS:" + result.rows);
-        res.json(result);
+        // console.log("RESULT ROWS:" + result);
+        var dbimages = result.map(function(item){
+            item.image = s3Url+item.image;
+            return item;
+        });
+        // console.log(dbimages);
+        res.json({'images': dbimages});
     }).catch((err)=>{
         console.log(err);
     });

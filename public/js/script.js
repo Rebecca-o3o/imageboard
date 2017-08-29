@@ -14,7 +14,7 @@
     var HomeModel = Backbone.Model.extend({
         initialize: function() {
             this.fetch();
-            console.log("MODEL:", this);
+            // console.log("MODEL:", this);
         },
         url: '/home'
     });
@@ -24,7 +24,7 @@
     var HomeView = Backbone.View.extend({
         initialize: function() {
             var view = this;
-            console.log("VIEW", this);
+            // console.log("VIEW", this);
             this.model.on('change', function() {
                 view.render();
             });
@@ -37,10 +37,18 @@
         }
     });
 
+    var homeView = new HomeView({
+        model: new HomeModel(),
+        el: '#main'
+    });
+
     //BACKBONE ROUTER
     var Router = Backbone.Router.extend({
         routes:{
             '*': 'home'
+        },
+        home: function(){
+            homeView.render();
         }
     });
 

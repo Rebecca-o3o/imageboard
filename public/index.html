@@ -6,16 +6,15 @@
     </head>
 
     <body>
-        <div id="main"></div>
-        
+
+        <div id="main">
+        </div>
+
         <template id="images">
-
-            <ul>
-                {{#images}}
-                <li> {{img}} {{uploader}} {{title}} {{description}}</li>
-                {{/images}}
-            </ul>
-
+            {{#each images}}
+                <img src="{{image}}" alt="{{description}}">
+                {{username}} {{title}} {{description}}
+            {{/each}}
         </template>
 
         <script src="/js/handlebars.min.js"></script>
