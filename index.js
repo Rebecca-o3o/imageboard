@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/home', function(req, res){
 
     return dbQuery.displayImages().then((result)=>{
-        console.log(result.rows);
+        console.log("RESULT ROWS:" + result.rows);
         res.json(result);
     }).catch((err)=>{
         console.log(err);

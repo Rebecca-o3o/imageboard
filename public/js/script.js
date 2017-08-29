@@ -14,17 +14,17 @@
     var HomeModel = Backbone.Model.extend({
         initialize: function() {
             this.fetch();
-            console.log(this);
+            console.log("MODEL:", this);
         },
         url: '/home'
     });
-    var HomeModel = new HomeModel;
+    var homeModel = new HomeModel;
 
     //BACKBONE VIEW
     var HomeView = Backbone.View.extend({
         initialize: function() {
             var view = this;
-            console.log(this);
+            console.log("VIEW", this);
             this.model.on('change', function() {
                 view.render();
             });
