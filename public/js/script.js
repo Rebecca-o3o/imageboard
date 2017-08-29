@@ -37,6 +37,7 @@
         }
     });
 
+    //Route handlers
     var homeView = new HomeView({
         model: new HomeModel(),
         el: '#main'
