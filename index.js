@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/public'));
 // }));
 //bodyparser.json
 
-app.get('/', function(req, res){
+app.get('/home', function(req, res){
 
     return dbQuery.displayImages().then((result)=>{
         console.log(result.rows);
