@@ -5,12 +5,18 @@ const dbQuery = require('./database');
 
 app.use(express.static(__dirname + '/public'));
 
-
+// app.use(require('body-parser').urlencoded({
+//     extended: false
+// }));
+//bodyparser.json
 
 app.get('/', function(req, res){
-    dbQuery.displayImages().then((result)=>{
+
+    return dbQuery.displayImages().then((result)=>{
         console.log(result.rows);
         res.json(result);
+    }).catch((err)=>{
+        console.log(err);
     });
 });
 

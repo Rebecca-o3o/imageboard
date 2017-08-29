@@ -14,44 +14,38 @@
     var HomeModel = Backbone.Model.extend({
         initialize: function() {
             this.fetch();
+            console.log(this);
         },
         url: '/home'
     });
+    var HomeModel = new HomeModel;
 
     //BACKBONE VIEW
     var HomeView = Backbone.View.extend({
         initialize: function() {
             var view = this;
+            console.log(this);
             this.model.on('change', function() {
                 view.render();
             });
         },
         render: function() {
             var data = this.model.toJSON();
+            //ref to .html template id=images
             var html = Handlebars.templates.images(data);
             this.$el.html(html);
         }
     });
 
     //BACKBONE ROUTER
-    // var Router = Backbone.Router.extend({
-    //     routes: {
-    //         'user/:id': 'user',
-    //         'users': 'users'
-    //     },
-    //     user: function(id) {
-    //         alert(id);
-    //     },
-    //     users: function() {
-    //         var usersView = new UsersView({
-    //             el: '#main',
-    //             model: new UsersModel
-    //         });
-    //     }
-    // });
-    //
-    // var router = new Router;
-    //
-    // Backbone.history.start();
+    var Router = Backbone.Router.extend({
+        routes:{
+            '*': 'home'
+        }
+    });
+
+    var router = new Router;
+
+    Backbone.history.start();
 
 })();
