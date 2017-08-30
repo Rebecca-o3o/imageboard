@@ -9,6 +9,27 @@ const multer = require('multer');           // does chunks of huge files
 const uidSafe = require('uid-safe');
 const path = require('path');
 
+//AWS S3 client module
+const knox = require('knox');
+
+
+
+//require secrets for S3 client
+let secrets;
+if (process.env.NODE_ENV == 'production') {
+    secrets = process.env; // in case of app being live
+} else {
+    secrets = require('./secrets');
+}
+//create S3 client
+const client = knox.createClient({
+    key: secrets.AWS_KEY,
+    secret: secrets.AWS_SECRET,
+    bucket: 'rkimageboard'
+});
+
+
+//upload files
 var diskStorage = multer.diskStorage({
     // determining the path and filename to use when saving files
     destination: function (req, file, callback) {
@@ -58,6 +79,10 @@ app.get('/home', function(req, res){
 app.post('/upload', uploader.single('file'), function(req, res) {
     console.log(req.file);
     if (req.file) {
+        // image=, username=, title=, description=
+        // dbQuery.saveImages(image, username, title, description);
+
+        //upload to AWS here
         res.json({
             success: true
         });
