@@ -8,21 +8,26 @@
 
     <body>
 
-        <div id="main">
+        <div id="head">
+            <template id="upload">
+                <input type="file">
+                <input type="text" name="title">
+                <button>Submit</button>
+            </template>
         </div>
 
-        <template id="images">
-            {{#each images}}
-                <img src="{{image}}" alt="{{description}}">
-                {{username}} {{title}} {{description}}
-            {{/each}}
-        </template>
+        <div id="main">
+            <template id="images">
+                {{#each images}}
+                    <img src="{{image}}" alt="{{description}}">
+                    {{username}} {{title}} {{description}}
+                {{/each}}
+            </template>
+        </div>
 
-        <template id="upload">
-            <input type="file">
-            <input type="text" name="title">
-            <button>Submit</button>
-        </template>
+
+
+
 
 
         <script src="/js/handlebars.min.js"></script>

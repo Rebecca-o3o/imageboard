@@ -96,7 +96,7 @@
     });
     var uploadView = new UploadView({
         model: new UploadModel(),
-        el: '#main'
+        el: '#head'
     });
 
     // ------ BACKBONE ROUTER ------ //
