@@ -11,8 +11,19 @@ var displayImages = function(){
     const queryText = 'SELECT * FROM images';
     // conssole.log(queryText);
     return db.query(queryText).then((result)=>{
-        console.log("Images:" + result.rows);
+        // console.log("Images:" + result.rows);
         return result.rows;
+    }).catch((err)=>{
+        console.log(err);
+    });
+};
+
+//save images to db
+var addImages = function(image, username, title, description){
+    const queryText = 'INSERT INTO images (image, username, title, description) VALUES ($1, $2, $3, $4) RETURNING id';
+    return db.query(queryText, [image, username, title, description]).then((result)=>{
+        // console.log(result.rows[0]);
+        return result.rows[0];
     }).catch((err)=>{
         console.log(err);
     });
@@ -20,5 +31,6 @@ var displayImages = function(){
 
 
 module.exports = {
-    displayImages
+    displayImages,
+    addImages
 };

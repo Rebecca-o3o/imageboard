@@ -15,27 +15,23 @@
             </ul>
         </nav>
 
-        <div id="main">
+        <div id="main"></div>
 
-            <template id="upload">
+        <template id="upload">
+            <input type="text" name="username" placeholder="Your Name" required>
+            <input type="text" name="title" placeholder="Image Title" required>
+            <input type="file" required>
+            <input type="text" name="description" placeholder="Image Description" required>
+            <button>Submit</button>
+        </template>
 
-                <!-- <form action="/upload" method="post"> -->
-                    <input type="text" name="username" value="Your Name">
-                    <input type="text" name="title" value="Image Title">
-                    <input type="file">
-                    <input type="text" name="description" value="Image Description">
-                    <button>Submit</button>
-                <!-- </form> -->
 
-            </template>
-
-            <template id="images">
-                {{#each images}}
-                    <img src="{{image}}" alt="{{description}}">
-                    {{username}} {{title}} {{description}}
-                {{/each}}
-            </template>
-        </div>
+        <template id="images">
+            {{#each images}}
+                <img src="{{image}}" alt="{{description}}">
+                {{username}} {{title}} {{description}}
+            {{/each}}
+        </template>
 
 
 

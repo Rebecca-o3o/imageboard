@@ -18,24 +18,25 @@
         },
         url: '/home'
     });
-    var homeModel = new HomeModel;
 
 
     var UploadModel = Backbone.Model.extend({
-        initialize: function() {
-            this.fetch();
-        },
+        // initialize: function() {
+        //     this.fetch();
+        // },
         url: '/upload',
-        save: function() {              //overwrite save function
+        save: function() {              //overwrite prototype save function
             //get first file used in html form input:
             var file = $('input[type="file"]').get(0).files[0];
 
             //create FormData:
             var formData = new FormData;
 
-            //attach file and img title to formData:
+            //attach inputs to formData:
             formData.append('file', file);
             formData.append('title', this.get('title'));
+            formData.append('username', this.get('username'));
+            formData.append('description', this.get('description'));
 
             //send FormData in ajax POST request:
             var model = this;
@@ -51,7 +52,6 @@
             });
         }
     });
-    var uploadModel = new UploadModel;
 
     // ------ BACKBONE VIEWS ------ //
     var HomeView = Backbone.View.extend({
@@ -82,42 +82,65 @@
         events: {
             'click button': function(e) {
                 this.model.set({
+                    file: this.$el.find('input[type="file"]').prop('files')[0],
                     title: this.$el.find('input[name="title"]').val(),
-                    file: this.$el.find('input[type="file"]').prop('files')[0]
+                    username: this.$el.find('input[name="username"]').val(),
+                    description: this.$el.find('input[name="description"]').val()
                 }).save();                  //overwritten save function
             }
         }
     });
 
-    // ------ Route handlers ------ //
-    var homeView = new HomeView({
-        model: new HomeModel(),
-        el: '#main'
-    });
-    var uploadView = new UploadView({
-        model: new UploadModel(),
-        el: '#head'
-    });
+    // var ImageView = Backbone.View.extend({
+    //     render: function() {
+    //         //ref to .html template id=upload
+    //         this.$el.html(Handlebars.templates.img(this.model.toJSON()));
+    //         new PostACommentView();
+    //     }
+    // });
+
+    // var imageView = new ImageView({
+    // }).on('ready', function(){
+    //     new PostACommentView({
+    //         el: '#post-a-comment',
+    //         model: new PostACommentModel({ imageId: id})
+    //     })
+    // });
+
 
     // ------ BACKBONE ROUTER ------ //
+    //optional monkey patching replacing old function and adding el.off
+    // var oldSetElement = Backbone.View.prototype.setElement;
+    // // function runs automatically
+    // Backbone.View.prototype.setEmelemnt = function(el) {
+    //     $(el).off();
+    //     oldSetElement.call(this.el);
+    // };
+
     var Router = Backbone.Router.extend({
         routes:{
-            // 'image/:id': 'image',
+            'image/:id': 'image',
             'upload': 'upload',
+            'home': 'home',
             '': 'home'
         },
         home: function(){
-            homeView.render();
+            new HomeView({
+                el: '#main',
+                model: new HomeModel
+            });
+            // $('#main').off();
         },
         upload: function() {
-            uploadView.render();
-        }
-        // upload: function() {
-        //     new UploadView({
-        //         el: '#main',
-        //         model: new UploadModel
-        //     });
-        // }
+            $('#main').off();  // removes still existing main element when in upload view
+            new UploadView({
+                el: '#main',
+                model: new UploadModel
+            });
+        },
+        // image: function(id){
+        //
+        // },
     });
 
     var router = new Router;

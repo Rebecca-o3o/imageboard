@@ -76,13 +76,42 @@ app.get('/home', function(req, res){
 });
 
 
-app.post('/upload', uploader.single('file'), function(req, res) {
-    console.log(req.file);
-    if (req.file) {
-        // image=, username=, title=, description=
-        // dbQuery.saveImages(image, username, title, description);
+//upload to AWS
+function uploadToS3(req, res) {
 
-        //upload to AWS here
+    //create a request object with data from multer
+    const s3Request = client.put(req.file.filename, {
+        'Content-Type': req.file.mimetype,
+        'Content-Length': req.file.size,
+        'x-amz-acl': 'public-read'
+    });
+
+    const fs = require('fs');
+    //readstream from file and pipe to to request
+    const readStream = fs.createReadStream(req.file.path);
+    readStream.pipe(s3Request);
+
+    // check status of event after request finished
+    s3Request.on('response', s3Response => {
+        const wasSuccessful = s3Response.statusCode == 200;
+        res.json({
+            success: wasSuccessful
+        });
+
+        // update db only after success
+        if(wasSuccessful) {
+            dbQuery.addImages(req.file.filename,
+                req.body.username,
+                req.body.title,
+                req.body.description);
+        }
+    });
+}
+
+//post incl. upload to AWS
+app.post('/upload', uploader.single('file'), uploadToS3, function(req, res) {
+    // console.log(req.file);
+    if (req.file) {
         res.json({
             success: true
         });
