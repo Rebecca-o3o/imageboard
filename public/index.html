@@ -8,15 +8,27 @@
 
     <body>
 
-        <div id="head">
-            <template id="upload">
-                <input type="file">
-                <input type="text" name="title">
-                <button>Submit</button>
-            </template>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="/#/home">Home</a></li>
+                <li><a href="/#/upload">Upload</a></li>
+            </ul>
+        </nav>
 
         <div id="main">
+
+            <template id="upload">
+
+                <!-- <form action="/upload" method="post"> -->
+                    <input type="text" name="username" value="Your Name">
+                    <input type="text" name="title" value="Image Title">
+                    <input type="file">
+                    <input type="text" name="description" value="Image Description">
+                    <button>Submit</button>
+                <!-- </form> -->
+
+            </template>
+
             <template id="images">
                 {{#each images}}
                     <img src="{{image}}" alt="{{description}}">

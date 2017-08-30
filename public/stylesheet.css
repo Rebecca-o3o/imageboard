@@ -1,9 +1,21 @@
 * {
-    margin: 0;
-    padding: 0
+    margin: 10px;
+    padding: 10px;
+}
+
+body {
+    background-color: LightYellow;
 }
 
 img {
     max-width: 100px;
     max-height: 100px;
+}
+
+input, select, textarea {
+    color: grey;
+}
+
+input:focus {
+    color: black;
 }
