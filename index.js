@@ -129,13 +129,9 @@ app.get('/image/:id', function(req, res){
     return dbQuery.viewImg(id).then((result)=>{
 
         // console.log(result);
-        //
-        // var img = result.map(function(item){
-        //     item.image = s3Url+item.image;
-        //     return item;
-        // });
-        // console.log(img);
-        res.json({'images': result});
+        result.rows[0].image = s3Url+result.rows[0].image ;
+        console.log(result.rows[0].image);
+        res.json({'image': result.rows[0]});
 
 
 
