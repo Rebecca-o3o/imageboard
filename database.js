@@ -19,7 +19,7 @@ var displayImages = function(){
 };
 
 //save images to db
-var addImages = function(image, username, title, description){
+var addImage = function(image, username, title, description){
     const queryText = 'INSERT INTO images (image, username, title, description) VALUES ($1, $2, $3, $4) RETURNING id';
     return db.query(queryText, [image, username, title, description]).then((result)=>{
         // console.log(result.rows[0]);
@@ -32,5 +32,5 @@ var addImages = function(image, username, title, description){
 
 module.exports = {
     displayImages,
-    addImages
+    addImage
 };

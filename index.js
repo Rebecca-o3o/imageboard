@@ -100,7 +100,7 @@ function uploadToS3(req, res) {
 
         // update db only after success
         if(wasSuccessful) {
-            dbQuery.addImages(req.file.filename,
+            dbQuery.addImage(req.file.filename,
                 req.body.username,
                 req.body.title,
                 req.body.description);
