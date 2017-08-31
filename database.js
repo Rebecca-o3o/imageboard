@@ -6,7 +6,7 @@ const db = spicedPg(require('./secrets').db);
 // const secrets = req uire('./secrets.json');
 // const db = spicedPg(`postgres:${secrets.dbUser}:${secrets.pass}@localhost:5432/images`);
 
-// get images
+// get all images
 var displayImages = function(){
     const queryText = 'SELECT * FROM images';
     // conssole.log(queryText);
@@ -29,8 +29,27 @@ var addImage = function(image, username, title, description){
     });
 };
 
+// get selected img data
+var viewImg = function(id){
+    const queryText = 'SELECT images.title, images.description, images.username, comments.username, comments.comment, comments.created_at\
+        FROM images\
+        LEFT JOIN comments\
+        ON images.id = comments.image_id\
+        WHERE images.id = $1\
+        ORDER BY comments.created_at DESC NULLS LAST';
+    return db.query(queryText, [id]).then((result)=>{
+        // console.log(result);
+        return result.rows;
+    }).catch((err)=>{
+        console.log(err);
+    });
+};
 
 module.exports = {
     displayImages,
-    addImage
+    addImage,
+    viewImg
 };
+
+
+// SELECT images.title, images.description, images.username, comments.username, comments.comment, comments.created_at FROM images LEFT JOIN comments ON images.id = comments.image_id WHERE images.id = 1 ORDER BY comments.created_at DESC NULLS LAST

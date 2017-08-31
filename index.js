@@ -122,4 +122,30 @@ app.post('/upload', uploader.single('file'), uploadToS3, function(req, res) {
     }
 });
 
+
+app.get('/image/:id', function(req, res){
+    // console.log(req.params);
+    var {id} = req.params;
+    return dbQuery.viewImg(id).then((result)=>{
+
+        // console.log(result);
+        //
+        // var img = result.map(function(item){
+        //     item.image = s3Url+item.image;
+        //     return item;
+        // });
+        // console.log(img);
+        res.json({'images': result});
+
+
+
+        // res.json({success: true});
+    }).catch((err)=>{
+        console.log(err);
+        res.json({
+            success: false
+        });
+    });
+});
+
 app.listen(8080, ()=> console.log('Server listening on port 8080'));
