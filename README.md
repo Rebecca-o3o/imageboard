@@ -15,7 +15,9 @@ Single-page Application with backbone.js & AWS S3
 
 ### Ideas
 - display img meta data
+- search/ filter by date
 
 ### Known Bugs
 - submit without input possible (required fields)
 - add success message to user
+- delete image from diskStorage

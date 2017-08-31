@@ -13,7 +13,7 @@
     //------ BACKBONE MODELS ------ //
     var HomeModel = Backbone.Model.extend({
         initialize: function() {
-            this.fetch();
+            this.fetch();  //makes GET request to server
             // console.log("MODEL:", this);
         },
         url: '/home',
@@ -26,7 +26,7 @@
 
     var UploadModel = Backbone.Model.extend({
         // initialize: function() {
-        //     this.fetch();
+        //     this.fetch();   //no GET request to server needed
         // },
         url: '/upload',
         save: function() {              //overwrite prototype save function
@@ -58,9 +58,13 @@
     });
 
     var ImgModel = Backbone.Model.extend({
-        url: '/image/:id',
         initialize: function(){
-            this.model.fetch();
+            console.log("init view model");
+            this.fetch();     //makes GET request to server
+        },
+        // url: '/image/:id'
+        url: function(){
+            return `/image/${this.get('id')}`;
         }
     });
 
@@ -115,14 +119,18 @@
     });
 
     var ImgView = Backbone.View.extend({
-        // initialize: function() {
-        //     this.render();
-        // },
+        initialize: function() {
+            var view = this;
+            // console.log("VIEW", this);
+            this.model.on('change', function() {
+                view.render();
+            });
+        },
         render: function() {
-            // var data = this.model.toJSON();
-            // console.log(data)
+            var data = this.model.toJSON();
+            console.log(data);
             //ref to .html template id=img
-            var html = Handlebars.templates.img({});
+            var html = Handlebars.templates.img(data);
             this.$el.html(html);
             //ref to .html template id=upload
             // this.$el.html(Handlebars.templates.img(this.model.toJSON()));
@@ -168,11 +176,14 @@
                 model: new UploadModel
             });
         },
-        image: function(){
+        image: function(id){
+            console.log("image view");
             new ImgView({
                 el: '#main',
-                model: {}
-            }).render();
+                model: new ImgModel({
+                    id: id
+                })
+            });
         },
     });
     var router = new Router;

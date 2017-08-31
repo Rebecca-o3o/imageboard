@@ -132,9 +132,6 @@ app.get('/image/:id', function(req, res){
         result.rows[0].image = s3Url+result.rows[0].image ;
         console.log(result.rows[0].image);
         res.json({'image': result.rows[0]});
-
-
-
         // res.json({success: true});
     }).catch((err)=>{
         console.log(err);

@@ -43,6 +43,11 @@ img {
     overflow: hidden;
 }
 
+button {
+    font-size: 21px;
+    padding: 10px;
+}
+
 /*input, select, textarea {
     color: grey;
 }*/
@@ -120,10 +125,15 @@ img {
     padding: 10px;
 }
 
-button {
-    font-size: 21px;
-    padding: 10px;
+.large-image-container {
+    margin: 80px 20px 20px 20px;
+    max-width: 1300px;
+    height: 1300px;
+    background-color: red;
+    border: 1px solid Gainsboro;
 }
+
+
 
 @media (max-width: 400px) {
     .imageboead-title {

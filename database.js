@@ -39,7 +39,7 @@ var viewImg = function(id){
         ORDER BY comments.created_at DESC NULLS LAST';
     return db.query(queryText, [id]).then((result)=>{
         // console.log(result);
-        return result.rows;
+        return result;
     }).catch((err)=>{
         console.log(err);
     });
