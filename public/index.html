@@ -27,14 +27,26 @@
 
 
         <template id="images">
-            {{#each images}}
-                <img src="{{image}}" alt="{{description}}">
-                {{username}} {{title}} {{description}}
-            {{/each}}
+            <div class="board">
+                {{#each images}}
+                <div class="img-cards">
+
+                        <!-- <div class="thumbnail-container"> -->
+                            <a href="/image/{{id}}"><img id="thumbnail" src="{{image}}" alt="{{description}}"></a>
+                        <!-- </div> -->
+                        <!-- <div class="thumbnail-desc"> -->
+                            {{username}} {{title}} {{description}}
+                        <!-- </div> -->
+
+                </div>
+                {{/each}}
+            </div>
         </template>
 
-
-
+        <template id="img">
+            <p>text</p>
+            <img id="" src="{{image}}" alt="{{description}}">
+        </template>
 
 
 
