@@ -63,15 +63,15 @@ img {
 .board {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-around;
+    justify-content: center;
+    /*align-content: flex-start;*/
     margin: 80px 20px 20px 20px;
-    max-width: 700px;
+    max-width: 1300px;
 }
 
 .img-cards {
     margin: 5px;
-    width: 200px;
+    width: 400px;
     height: 200px;
     min-width: 200px;
     min-height: 200px;
@@ -80,16 +80,16 @@ img {
 }
 
 .thumbnail-container {
-    width: 200px;
-    height: 100px;
+    width: 400px;
+    height: 150px;
     /*border: 1px solid Gainsboro;*/
     background-color: red;
 }
 
 .thumbnail-desc {
     padding-top: 5px;
-    width: 200px;
-    height: 100px;
+    width: 300px;
+    height: 50px;
     font-size: 12px;
 }
 
@@ -112,12 +112,5 @@ button {
 @media (max-width: 400px) {
     .imageboead-title {
         display: none;
-        /*text-transform: uppercase;
-        font-style: italic;
-        font-weight: bold;
-        color: DeepPink;
-        font-size: 21px;
-        text-align: right;
-        padding: 10px;*/
     }
 }
