@@ -19,9 +19,9 @@ DROP TABLE IF EXISTS comments;
 CREATE TABLE comments(
     id SERIAL PRIMARY KEY,
     image_id INTEGER REFERENCES images(id),
-    username VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
     comment TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO comments (image_id, username, comment) VALUES ('1', 'funkychicken', 'nice image!');
+INSERT INTO comments (image_id, author, comment) VALUES ('1', 'funkychicken', 'nice image!');

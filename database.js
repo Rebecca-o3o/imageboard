@@ -31,7 +31,7 @@ var addImage = function(image, username, title, description){
 
 // get selected img data
 var viewImg = function(id){
-    const queryText = 'SELECT images.title, images.description, images.username, comments.username, comments.comment, comments.created_at\
+    const queryText = 'SELECT images.image, images.title, images.description, images.username, comments.author, comments.comment, comments.created_at\
         FROM images\
         LEFT JOIN comments\
         ON images.id = comments.image_id\
@@ -52,4 +52,4 @@ module.exports = {
 };
 
 
-// SELECT images.title, images.description, images.username, comments.username, comments.comment, comments.created_at FROM images LEFT JOIN comments ON images.id = comments.image_id WHERE images.id = 1 ORDER BY comments.created_at DESC NULLS LAST
+// SELECT images.image, images.title, images.description, images.username, comments.author, comments.comment, comments.created_at FROM images LEFT JOIN comments ON images.id = comments.image_id WHERE images.id = 1 ORDER BY comments.created_at DESC NULLS LAST
