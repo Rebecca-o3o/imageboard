@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <link rel="stylesheet" href="/stylesheet.css">
         <title>Image Board</title>
     </head>
 
     <body>
+        <header>
+            <div class="imageboead-title">
+                Image Board SPA
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/#/home">Home</a></li>
+                    <li><a href="/#/upload">Upload</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <nav>
-            <ul>
-                <li><a href="/#/home">Home</a></li>
-                <li><a href="/#/upload">Upload</a></li>
-            </ul>
-        </nav>
-
-        <div id="main"></div>
+        <div id="main">
+        </div>
 
         <template id="upload">
-            <input type="text" name="username" placeholder="Your Name" required>
-            <input type="text" name="title" placeholder="Image Title" required>
-            <input type="file" required>
-            <input type="text" name="description" placeholder="Image Description" required>
-            <button>Submit</button>
+            <div class="upload-container">
+                <input type="text" name="username" placeholder="Your Name" required>
+                <input type="text" name="title" placeholder="Image Title" required>
+                <input type="file" required>
+                <input type="text" name="description" placeholder="Image Description" required>
+                <button>Submit</button>
+            </div>
         </template>
 
 
@@ -31,12 +39,23 @@
                 {{#each images}}
                 <div class="img-cards">
 
-                        <!-- <div class="thumbnail-container"> -->
-                            <a href="/image/{{id}}"><img id="thumbnail" src="{{image}}" alt="{{description}}"></a>
-                        <!-- </div> -->
-                        <!-- <div class="thumbnail-desc"> -->
-                            {{username}} {{title}} {{description}}
-                        <!-- </div> -->
+                    <div class="thumbnail-container">
+                        <a href="/#/image/{{id}}"><img id="thumbnail" src="{{image}}" alt="{{description}}"></a>
+                    </div>
+                    <div class="thumbnail-desc">
+
+                        <div class="title">
+                            Title:
+                        </div>
+                        <div class="title-val">
+                            {{title}}
+                        </div>
+
+                        <div class="username">
+                            User: {{username}}
+                        </div>
+                            {{description}}
+                    </div>
 
                 </div>
                 {{/each}}
