@@ -31,7 +31,8 @@ var addImage = function(image, username, title, description){
 
 // get selected img data
 var viewImg = function(id){
-    const queryText = 'SELECT images.image, images.title, images.description, images.username, comments.author, comments.comment, comments.created_at\
+    const format = "'Day, DD.Mon.YYYY HH24:MI'";
+    const queryText = 'SELECT images.image, images.title, images.description, images.username, comments.author, comments.comment, to_char(comments.created_at,'+ format +') AS created_at\
         FROM images\
         LEFT JOIN comments\
         ON images.id = comments.image_id\
@@ -52,4 +53,5 @@ module.exports = {
 };
 
 
-// SELECT images.image, images.title, images.description, images.username, comments.author, comments.comment, comments.created_at FROM images LEFT JOIN comments ON images.id = comments.image_id WHERE images.id = 1 ORDER BY comments.created_at DESC NULLS LAST
+// SELECT images.image, images.title, images.description, images.username, comments.author, comments.comment, comments.created_at FROM images LEFT JOIN comments ON images.id = comments.image_id WHERE images.id = 1 ORDER BY comments.created_at DESC NULLS LAST;
+// SELECT images.image, images.title, images.description, images.username, comments.author, comments.comment, to_char(comments.created_at, 'Day, DD.Mon.YYYY HH24:MI') AS created_at FROM images LEFT JOIN comments ON images.id = comments.image_id WHERE images.id = 1 ORDER BY comments.created_at DESC NULLS LAST;
