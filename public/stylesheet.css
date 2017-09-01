@@ -88,7 +88,7 @@ nav li {
     /*background-color: red;*/
 }
 
-img {
+#thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -140,12 +140,39 @@ img {
 /****** IMAGE VIEW ******/
 .large-image-container {
     margin: 80px 20px 20px 20px;
-    max-width: 1300px;
-    height: 1300px;
-    background-color: red;
+    max-width: 1000px;
+}
+
+#large-image {
+    max-width: 1000px;
+    max-height: 500px;
+    border-radius: 5px;
     border: 1px solid Gainsboro;
 }
 
+.large-image-desc {
+    padding: 5px;
+    /*width: 390px;
+    height: 50px;*/
+    font-size: 12px;
+    background-color: white;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid Gainsboro;
+}
+
+.username-img-view {
+    color: Gainsboro;
+    font-style: italic;
+}
+
+.comment-section {
+    padding: 5px;
+    /*margin-top: 5px;*/
+    font-size: 12px;
+    background-color: Gainsboro;
+    border: 1px solid Gainsboro;
+}
 
 
 @media (max-width: 530px) {

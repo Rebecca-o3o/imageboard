@@ -61,12 +61,22 @@
 
         <template id="img">
             <div class="large-image-container">
-                {{id}}
-                <p>text</p>
-                <img id="" src="{{image}}" alt="{{description}}">
-            </div>
 
-            <p>text2 {{id}}</p>
+                <img id="large-image" src="{{image}}" alt="{{description}}">
+
+                <div class="large-image-desc">
+                    <p class="img-title">{{title}}</p>
+                    <p class="username-img-view">@{{username}}</p>
+                    <p>{{description}}</p>
+                </div>
+
+                <div class="comment-section">
+                    <input type="text" name="author" placeholder="Your Name" required>
+                    <input type="text" name="comment" placeholder="Your comment..." required>
+                    <button>Send</button>
+                </div>
+
+            </div>
 
         </template>
 
