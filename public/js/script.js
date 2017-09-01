@@ -59,7 +59,7 @@
 
     var ImgModel = Backbone.Model.extend({
         initialize: function(){
-            console.log("init view model");
+            // console.log("init view model");
             this.fetch();     //makes GET request to server
         },
         // url: '/image/:id'
@@ -128,9 +128,11 @@
         },
         render: function() {
             var data = this.model.toJSON();
-            console.log(data);
+            // console.log(data);
+            // console.log(data.id);
+            // console.log(data.image);
             //ref to .html template id=img
-            var html = Handlebars.templates.img(data);
+            var html = Handlebars.templates.img(data.image);
             this.$el.html(html);
             //ref to .html template id=upload
             // this.$el.html(Handlebars.templates.img(this.model.toJSON()));
@@ -177,7 +179,7 @@
             });
         },
         image: function(id){
-            console.log("image view");
+            // console.log("image view");
             new ImgView({
                 el: '#main',
                 model: new ImgModel({
