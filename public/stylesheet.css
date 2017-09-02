@@ -270,4 +270,8 @@ nav li {
         /*height: 50px;
         font-size: 12px;*/
     }
+
+    #upload-cloud {
+        width: 80px;
+    }
 }
