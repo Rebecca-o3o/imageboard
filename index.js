@@ -129,9 +129,31 @@ app.get('/image/:id', function(req, res){
     return dbQuery.viewImg(id).then((result)=>{
 
         // console.log(result);
-        result.rows[0].image = s3Url+result.rows[0].image ;
+        result.rows[0].image = s3Url+result.rows[0].image;
+        // console.log(result.rows.length);
         // console.log(result.rows[0].image);
-        res.json({'image': result.rows[0]});
+
+        var comments = {};
+
+        // element[ yourKey ] = yourValue
+
+        for (var i = 0; i < result.rows.length; i++) {
+            comments[i] = {};
+            comments[i].author = result.rows[i].author;
+            comments[i].comment = result.rows[i].comment;
+            comments[i].created_at = result.rows[i].created_at;
+
+            // console.log(result.rows[i].author);
+            // console.log(result.rows[i].comment);
+            // console.log(result.rows[i].created_at);
+        }
+
+        console.log(comments);
+
+        res.json({
+            'image': result.rows[0],
+            'comments': comments
+        });
         // res.json({success: true});
     }).catch((err)=>{
         console.log(err);
