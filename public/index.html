@@ -21,14 +21,29 @@
         </header>
 
         <div id="main">
+
+
         </div>
 
         <template id="upload">
             <div class="upload-container">
+
+                <div>
+                    <h2>Upload your images and share them!</h2>
+                </div>
+
+                <div>
+                    <img id="upload-cloud" src="/images/upload.svg" alt="upload">
+                </div>
+
+                <input type="file" name="file" id="file-input" class="inputfile" />
+                <label for="file-input">Start upload</label>
+                <!-- <input type="file" required> -->
+
                 <input type="text" name="username" placeholder="Your Name" required>
                 <input type="text" name="title" placeholder="Image Title" required>
-                <input type="file" required>
                 <input type="text" name="description" placeholder="Image Description" required>
+
                 <button>Submit</button>
             </div>
         </template>
@@ -71,10 +86,12 @@
                 </div>
 
                 <div class="comment-line">
-                    {{author}} wrote: {{comment}}
+                    <p>On {{created_at}}</p>
+                    <p>{{author}} wrote: {{comment}}</p>
                 </div>
 
                 <div class="add-a-comment">
+                    <p>Post a comment...</p>
                     <input type="text" name="author" placeholder="Your Name" required>
                     <input type="text" name="comment" placeholder="Your comment..." required>
                     <button>Send</button>
