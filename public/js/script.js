@@ -64,9 +64,9 @@
         },
         // url: '/image/:id'
         url: function(){
-            console.log(this);
+            // console.log(this);
             var id = this.attributes.id;
-            console.log("/image/"+ id);
+            // console.log("/image/"+ id);
             return ("/image/"+ id);
         },
         save: function() {              //overwrite prototype save function
@@ -102,7 +102,7 @@
         },
         render: function() {
             var data = this.model.toJSON();
-            console.log(data);
+            // console.log(data);
             //ref to .html template id=images
             var html = Handlebars.templates.images(data);
             this.$el.html(html);
@@ -110,7 +110,7 @@
         handleClick: function(e){
             //using jQuery index() to detect click
             var imgID = $(e.target).index();
-            console.log(imgID);
+            // console.log(imgID);
 
             this.model.displayImg(imgID);
         },
@@ -163,7 +163,7 @@
         },
         events: {
             'click button': function(e) {
-                console.log("comment button clicked");
+                // console.log("comment button clicked");
                 this.model.set({
                     author: this.$el.find('input[name="author"]').val(),
                     comment: this.$el.find('input[name="comment"]').val()
