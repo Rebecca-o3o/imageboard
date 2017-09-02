@@ -31,7 +31,7 @@ var addImage = function(image, username, title, description){
 
 // get selected img data
 var viewImg = function(id){
-    const format = "'Day, DD.Mon.YYYY HH24:MI'";
+    const format = "'Day DD.Mon.YYYY HH24:MI'";
     const queryText = 'SELECT images.image, images.title, images.description, images.username, comments.author, comments.comment, to_char(comments.created_at,'+ format +') AS created_at\
         FROM images\
         LEFT JOIN comments\
@@ -46,10 +46,17 @@ var viewImg = function(id){
     });
 };
 
+//add comment
+var addComment = function(id, author, comment){
+    const queryText = 'INSERT INTO comments (image_id, author, comment) VALUES ($1, $2, $3)';
+    return db.query(queryText, [id, author, comment]);
+};
+
 module.exports = {
     displayImages,
     addImage,
-    viewImg
+    viewImg,
+    addComment
 };
 
 

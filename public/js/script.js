@@ -64,7 +64,30 @@
         },
         // url: '/image/:id'
         url: function(){
-            return `/image/${this.get('id')}`;
+            console.log(this);
+            var id = this.attributes.id;
+            console.log("/image/"+ id);
+            return ("/image/"+ id);
+        },
+        save: function() {              //overwrite prototype save function
+            //create FormData:
+            var model = this;
+            var data = {
+                author: model.get('author'),
+                comment: model.get('comment')
+            };
+            // console.log(data);
+
+            //send FormData in ajax POST request:
+            $.ajax({
+                url: this.url(),
+                method: 'POST',
+                data: data,
+                success: function() {
+                    // console.log("comment uploaded");
+                    model.trigger("comment Success!");
+                }
+            });
         }
     });
 
@@ -138,6 +161,15 @@
             // this.$el.html(Handlebars.templates.img(this.model.toJSON()));
             // new PostACommentView();
         },
+        events: {
+            'click button': function(e) {
+                console.log("comment button clicked");
+                this.model.set({
+                    author: this.$el.find('input[name="author"]').val(),
+                    comment: this.$el.find('input[name="comment"]').val()
+                }).save();                  //overwritten save function
+            }
+        }
     });
     // var imageView = new ImageView({
     // }).on('ready', function(){

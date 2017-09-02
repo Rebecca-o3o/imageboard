@@ -130,7 +130,7 @@ app.get('/image/:id', function(req, res){
 
         // console.log(result);
         result.rows[0].image = s3Url+result.rows[0].image ;
-        console.log(result.rows[0].image);
+        // console.log(result.rows[0].image);
         res.json({'image': result.rows[0]});
         // res.json({success: true});
     }).catch((err)=>{
@@ -139,6 +139,27 @@ app.get('/image/:id', function(req, res){
             success: false
         });
     });
+});
+
+
+//post comment
+app.post('/image/:id', function(req, res) {
+    // console.log(req.params.id);
+    // console.log(req.body.comment);
+    // console.log(req.body.author);
+
+    var id = req.params.id;
+    var comment = req.body.comment;
+    var author = req.body.author;
+
+    dbQuery.addComment(id, author, comment).then(()=>{
+        res.json({
+            success: true
+        });
+    }).catch((err)=>{
+        console.log(err);
+    }
+);
 });
 
 app.listen(8080, ()=> console.log('Server listening on port 8080'));
