@@ -21,6 +21,6 @@ Single-page Application with backbone.js & AWS S3
 
 ### Known Bugs
 - submit without input possible (required fields)
-- add success message to user
+- after upload: render home view
 - delete image from diskStorage
-- img size larger than card in mobile
+- missing comments display

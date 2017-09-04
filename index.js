@@ -148,7 +148,7 @@ app.get('/image/:id', function(req, res){
             // console.log(result.rows[i].created_at);
         }
 
-        console.log(comments);
+        // console.log(comments);
 
         res.json({
             'image': result.rows[0],
