@@ -104,7 +104,7 @@ nav li {
 }
 
 .thumbnail-container {
-    width: 400px;
+    min-width: 400px;
     height: 150px;
     /*border: 1px solid Gainsboro;*/
     /*background-color: red;*/
@@ -122,12 +122,21 @@ nav li {
 .thumbnail-desc {
     /*padding-top: 5px;*/
     padding: 5px;
-    width: 390px;
-    height: 50px;
+    min-width: 390px;
+    max-height: 50px;
     font-size: 12px;
+    text-overflow: ellipsis;
+}
+
+.desc-text {
+    text-overflow: ellipsis;
+    max-height: 15px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .img-title {
+    min-width: 400px;
     color: DeepPink;
 }
 
