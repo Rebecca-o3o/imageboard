@@ -1,23 +1,23 @@
-# Petition
-Single-page Application with backbone.js & AWS S3
+# Imageboard
 
-## Features
+## Overview
+Single-page Application with Backbone.js
 
+## Technologies
+- Backbone.js
+- Node.js
+- Express.js
+- PostgreSQL
+- AWS S3 for storing images
 
-## Requirements
-- [x] home view
-- [x] upload view
-- [x] image view
+## Details
 
-- [x] display from AWS S3
-- [x] upload to AWS S3
+### Image Board to view all images uploaded by any user
+<img src="screenshot-image-board.png" alt="image board">
 
-- [x] insert comments
-- [ ] display comments
+### Image Upload page
+<img src="screenshot-image-upload" alt="image upload">
 
-### Ideas
-- display img meta data
-- search/ filter by date
 
 ### Known Bugs
 - submit without input possible (required fields)
