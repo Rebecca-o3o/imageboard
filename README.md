@@ -16,7 +16,7 @@ Single-page Application with Backbone.js
 <img src="screenshot-image-board.png" alt="image board">
 
 ### Image Upload page
-<img src="screenshot-image-upload" alt="image upload">
+<img src="screenshot-image-upload.png" alt="image upload">
 
 
 ### Known Bugs
